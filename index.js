@@ -12,12 +12,17 @@ const MONGOURI = require("./config/keys").mongoURI;
 //Declaracion del puerto
 const PORT = process.env.PORT || 5000;
 
+//Permitir que la API pueda recibir request de cualquier lugar
+const cors = require("cors");
+
 //Instancia de Express
 const app =  express();
 
 //Body parser config
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+app.use(cors());
 
 //Config de acceso a la base de datos.
 mongoose.connect(MONGOURI, {useNewUrlParser: true})
